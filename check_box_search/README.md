@@ -8,3 +8,4 @@
 + ajax
 + javascript
 + jsp
++ oracle DB
