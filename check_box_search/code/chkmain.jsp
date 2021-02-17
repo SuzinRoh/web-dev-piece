@@ -6,159 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>checkboxSearching</title>
+
+<script src="/chkSearchJs.js"></script>
  <!-- Ajax구현하기 위해 필요 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- jQuery 사용하기위해서 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="/chkSearchCss.css">
 <style>
-.container {
-	font-family: 'Noto Sans JP', sans-serif;
-	font-family: 'Noto Sans', sans-serif;
-	display: flex;
-	justify-content: center;
-	item-align: center;
-	flex-direction: column;
-/* 	background-color: grey; */
-}
-ul{
-	list-style: none;
-	}
-.main {
-	background-color: white;
-	min-width: 800px;
-	margin-left:15%;margin-right:15%;
-}
 
-.listmenu {
-	display: flex;
-	justify-content: center;
-	item-align: center;
-	background-color: pink;
-	padding: 10px;
-}
-
-.listmenu div {
-	padding-left: 10px;
-	padding-right: 10px;
-	text-align: center;
-}
-
-.searchjob {
-	display: flex;
-	justify-content: center;
-	item-align: center;
-	background-color: white;
-	padding: 10px;
-}
-
-.searchjob div {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-.openinglist{
-	display: flex; 
-	flex-wrap: wrap; 
-	width: 100%; 
-	justify-content: center;
-}
-.openinglist ul{
-	list-style: none;
-	padding:5px;
-	margin:0px;
-}
-.opening_companyInfo {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	align-content: center;
-/* 	box-shadow: 5px 5px 10px 1px rgba(10, 10, 10, 0.1); */
-	width: 380px;
-	height: 100px;
-	background-color: #ffffff; 
-	border:solid 1px #282a52;
-	padding: 2px;
-	border-radius:5px;text-align:center;
-}
-.countopening {
-	display: flex;
-	padding:0px;
-	margin-top:20px;
-	margin-left:30px;margin-right:30px;
-	justify-content: space-between;
-	item-align: center;
-	padding: 10px;
-	font-size:12px;
-	color:grey;font-weght:700;
-	align-items: baseline;
-}
-.dropbtn{
-	width:60px;
-}
-.search_location_drop{
-	position:relative;
-	display:inline-block;
-	
-}
-/*location*/
-.search_location_drop_con{
-	padding:6px;
-	display:none;
-	position:absolute;
-	min-width:60px;
-	text-align:left;
-	text-size:8px;
-	background-color: #f9f9f9;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
- 	z-index: 1;
-}
-.search_location_drop:hover .search_location_drop_con{
-	display:block;
-}
-/*duty*/
-.search_duty_drop{
-	position:relative;
-	display:inline-block;
-	
-}
-.search_duty_drop_con{
-	padding:6px;
-	display:none;
-	position:absolute;
-	min-width:60px;
-	text-align:left;
-	text-size:8px;
-	background-color: #f9f9f9;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
- 	z-index: 1;
-}
-.search_duty_drop:hover .search_duty_drop_con{
-	display:block;
-}
-/*salary*/
-.search_salary_drop{
-	position:relative;
-	display:inline-block;
-	
-}
-.search_salary_drop_con{
-	padding:6px;
-	display:none;
-	position:absolute;
-	min-width:60px;
-	text-align:left;
-	text-size:8px;
-	background-color: #f9f9f9;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
- 	z-index: 1;
-}
-.search_salary_drop:hover .search_salary_drop_con{
-	display:block;
-}
-#checkedlist , #openinglist {
-  transition: transform .2s ease-in-out, opacity 0.3s ease-in-out;
-}
 </style>
 </head>
 <body>
