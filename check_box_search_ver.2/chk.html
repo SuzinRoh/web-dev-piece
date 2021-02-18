@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Ajax구현하기 위해 필요 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- jQuery 사용하기위해서 -->
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+              integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+              crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class=search_duty_drop>
+        <button class=dropbtn>직무&nbsp;<i class="fas fa-caret-down"></i></button>
+        <div class=search_duty_drop_con>
+            <li><label><input  class=chkbtn type="checkbox" name="duty_drop_con" value="back" onclick=' getChkInnerChange_duty();'/>백엔드</label>
+            <li><label ><input  class=chkbtn type="checkbox" name="duty_drop_con" value="front" onclick=' getChkInnerChange_duty();'/>프론트</label>
+            <li><label ><input  class=chkbtn type="checkbox" name="duty_drop_con" value="android" onclick=' getChkInnerChange_duty();'/>안드로이드 앱</label>
+            <li><label ><input  class=chkbtn type="checkbox" name="duty_drop_con" value="ios" onclick=' getChkInnerChange_duty();'/>아이폰 앱</label>
+            <li><label ><input  class=chkbtn type="checkbox" name="duty_drop_con" value="AI" onclick=' getChkInnerChange_duty();'/>인공지능</label>
+            <li><label ><input  class=chkbtn type="checkbox" name="duty_drop_con" value="game" onclick=' getChkInnerChange_duty();'/>게임</label>
+        </div>
+    </div>
+    <!-- chk2 -->
+    <div class=search_location_drop>
+        <button class=dropbtn>지역&nbsp;<i class="fas fa-caret-down"></i></button>
+        <div class=search_location_drop_con>
+            <li><label><input  class=chkbtn type="checkbox" name="location_drop_con" value="tokyo" onclick='getChkInnerChange_lo();'/>도쿄</label>
+            <li><label><input  class=chkbtn type="checkbox" name="location_drop_con" value="osaka" onclick='getChkInnerChange_lo();'/>오사카</label>
+            <li><label><input  class=chkbtn type="checkbox" name="location_drop_con" value="etc" onclick='getChkInnerChange_lo();'/>그외</label>
+        </div>
+    </div>
+    <!-- chk3 -->
+    <div class=search_salary_drop>
+        <button class=dropbtn>연봉&nbsp;<i class="fas fa-caret-down"></i></button>
+        <div class=search_salary_drop_con>
+            <li><label><input class=chkbtn type="checkbox" name="salary_drop_con" value="2500" onclick=' getChkInnerChange_sal();'/>2500</label>
+            <li><label><input  class=chkbtn type="checkbox" name="salary_drop_con" value="3000" onclick=' getChkInnerChange_sal();'/>3000</label>
+            <li><label><input  class=chkbtn type="checkbox" name="salary_drop_con" value="3500" onclick=' getChkInnerChange_sal();'/>3500</label>
+            <li><label><input  class=chkbtn type="checkbox" name="salary_drop_con" value="4000" onclick=' getChkInnerChange_sal();'/>3500</label>
+            <li><label><input  class=chkbtn type="checkbox" name="salary_drop_con" value="4500" onclick=' getChkInnerChange_sal();'/>4500</label>
+            <li><label><input  class=chkbtn type="checkbox" name="salary_drop_con" value="5000" onclick=' getChkInnerChange_sal();'/>5000</label>
+        </div>
+    </div>
+    
+</div>
+<!-- search end -->
+<!-- count-->
+<div class=countopening >
+    <div id=openingcountsearch style="display:none"></div>
+    <div id=openingcount style="">${count}개의 공고</div>
+</div>
+</body>
+<script type="text/javascript" >
+	function getChkInnerChange_duty() {
+		// 선택된 목록 가져오기
+		  const query = 'input[name="duty_drop_con"]:checked';
+		  const selectedEls =  document.querySelectorAll(query);
+		  const cnt = selectedEls.length;
+		  
+		 
+		 	
+		  // 선택된 목록에서 value 찾기
+		  let result = '';
+		  selectedEls.forEach((el) => {
+		    result +=  el.value + ' ';
+		  });
+		  
+		  // 출력
+		  //alert(result.length);
+		  if(result.length > 0){
+		  	document.getElementById('tag_duty').innerText = result;
+		  	document.getElementById('tag_duty').style.display = "inline-block";
+		  } else{
+			  document.getElementById('tag_duty').style.display = "none";
+		  }
+		  
+		  if(cnt <= 0 ){
+		        //count
+		        document.getElementById("openingcountsearch").style.display="none";
+		        document.getElementById("openingcount").style.display="block";
+		        //list
+		        document.getElementById("checkedlist").style.display="none";
+		        document.getElementById("openinglist").style.display="flex";
+		    } else{
+		        //count
+		        document.getElementById("openingcount").style.display="none";
+		        document.getElementById("openingcountsearch").style.display="block";
+		        //list
+		        document.getElementById("checkedlist").style.display="flex";
+		        document.getElementById("openinglist").style.display="none";
+		    }
+	}
+	
+	function getChkInnerChange_lo() {
+		// 선택된 목록 가져오기
+		  const query = 'input[name="location_drop_con"]:checked';
+		  const selectedEls = document.querySelectorAll(query);
+ 		  const cnt = selectedEls.length;
+		  
+		  
+		  // 선택된 목록에서 value 찾기
+		  let result = '';
+		  selectedEls.forEach((el) => {
+		    result += el.value + ' ';
+		  });
+		  
+		  if(result.length > 0){
+			  document.getElementById('tag_lo').style.display = "inline-block";
+		 	 document.getElementById('tag_lo').innerText = " "+result+" ";
+		  } else{
+			  document.getElementById('tag_lo').style.display = "none";
+		  }
+		  
+		  if(cnt <= 0 ){
+		        //count
+		        document.getElementById("openingcountsearch").style.display="none";
+		        document.getElementById("openingcount").style.display="block";
+		        //list
+		        document.getElementById("checkedlist").style.display="none";
+		        document.getElementById("openinglist").style.display="flex";
+		    } else{
+		        //count
+		        document.getElementById("openingcount").style.display="none";
+		        document.getElementById("openingcountsearch").style.display="block";
+		        //list
+		        document.getElementById("checkedlist").style.display="flex";
+		        document.getElementById("openinglist").style.display="none";
+		    }
+		  
+	}
+	function getChkInnerChange_sal() {
+		// 선택된 목록 가져오기
+		  const query = 'input[name="salary_drop_con"]:checked';
+		  const selectedEls =  document.querySelectorAll(query);
+		  const cnt = selectedEls.length;
+		  // 선택된 목록에서 value 찾기
+		  let result = '';
+		  selectedEls.forEach((el) => {
+		    result += el.value + ' ';
+		  });
+		  
+		  if(result.length > 0){
+			 document.getElementById('tag_sal').style.display = "inline-block";
+		 	 document.getElementById('tag_sal').innerText = " "+result+" ";
+		  } else{
+			 document.getElementById('tag_sal').style.display = "none";
+		  }
+		  
+		  if(cnt <= 0 ){
+		        //count
+		        document.getElementById("openingcountsearch").style.display="none";
+		        document.getElementById("openingcount").style.display="block";
+		        //list
+		        document.getElementById("checkedlist").style.display="none";
+		        document.getElementById("openinglist").style.display="flex";
+		    } else{
+		        //count
+		        document.getElementById("openingcount").style.display="none";
+		        document.getElementById("openingcountsearch").style.display="block";
+		        //list
+		        document.getElementById("checkedlist").style.display="flex";
+		        document.getElementById("openinglist").style.display="none";
+		    }
+		
+	}
+	
+	$(".chkbtn").ready(function() {
+		$(".chkbtn").change(function() {//checkbox 클릭시동작
+			var location = [];
+			var salary = [];
+			var duty = [];
+			
+			$('input:checkbox[name=location_drop_con]:checked').each(function () { location.push($(this).val()); });
+			$('input:checkbox[name=salary_drop_con]:checked').each(function () { salary.push($(this).val()); });
+			$('input:checkbox[name=duty_drop_con]:checked').each(function () { duty.push($(this).val()); });
+			
+			$.ajax({
+				url : "/Job_opening?cmd=company_job_opening_search&location="+location+"&salary="+salary+"&duty="+duty,
+				type : "post",
+				datatype:"json",
+				success : function(openinglist){
+					$("#checkedlist").html("");//div초기화
+					$.each(openinglist ,function(i , val){
+						
+						$("#openingcountsearch").html(val.cnt+"개의 공고");
+						//div에 html추가
+						$("#checkedlist").append("<div>"+
+													"<ul class=list_ul>"+	
+														"<li><div class='opening_companyInfo' onclick=\"location.href='/Job_opening?cmd=company_job_opening_detail&num="+val.com_num +"'\">"+
+																"<div class=opening_comimage style=\"flex-shrink: 0; width: 30px; height: 30px;\"><img style=\"width:30px;height:30px;\" src=\"val.com_file_name\"></div>"+
+																"<div style=\"text-align: left; flex-shrink: 1;\">"+
+																	"<div class=opening_comname style=\"font-size: 12px; font-weight: 500;\">"+val.com_name+"</div>"+
+																	"<div class=opening_comfiled style=\"width: 200px; font-size: 20px; font-weight: 900;\">"+val.opening_duty+"</div>"+
+																	"<div class=opening_comloction style=\"font-size: 12px; border: soild 1px black;\">"+val.com_location.substring(0,3)+"</div>"+
+																	"<div class=opening_comfiled style=\"font-size: 12px; border-radius: 2px; background-color: #d5e2f7; padding: 2px;\">"+val.com_working_field+"</div>"+
+																"</div>"+		
+														"</div></li>"+
+													"</ul>"+
+												"</div>");
+					});
+				},
+				error : function(request, status , error){ alert("no"); }
+		    });	
+		
+		 });
+		});
+
+	
+	
+</script>
+</html>
